@@ -22,10 +22,6 @@ class Asteroid(Encounter):
                 print(self.ore)
 
     def action(self, stuff_for_action) -> int:
-        # debug print
-        print("Ore type: ", self.ore)
-        print("Ore quantity: ", self.quantity)
-
         if self.quantity >= 0:
             mined = self.quantity * 0.33 + self.tools[0]
             self.quantity -= mined
@@ -36,3 +32,7 @@ class Asteroid(Encounter):
             return mined
         else:
             print("Asteroid contains no ore")
+
+    def print(self):
+        print("Ore type: ", self.ore)
+        print("Ore quantity: ", self.quantity)

@@ -8,3 +8,6 @@ class Encounter:
 
     def action(self, stuff_for_action):
         pass
+
+    def print(self):
+        pass

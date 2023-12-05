@@ -10,5 +10,4 @@ if __name__ == '__main__':
     while game.is_running:
         print("Please enter your command (Press M for list):")
         game.handle_input()
-        game.ship.update_grid()
-        game.space.print()
+        game.update()

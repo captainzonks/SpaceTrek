@@ -6,5 +6,8 @@ class GameState:
     def handle_input(self):
         pass
 
+    def update(self):
+        pass
+
     def print_menu(self):
         pass

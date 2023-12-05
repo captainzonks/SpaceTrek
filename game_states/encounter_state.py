@@ -1,6 +1,6 @@
-from asteroid import Asteroid
+from encounters.asteroid import Asteroid
 from game_state import GameState
-from space_station import SpaceStation
+from encounters.space_station import SpaceStation
 
 
 class EncounterState(GameState):
@@ -27,6 +27,9 @@ class EncounterState(GameState):
                 exit(0)
             case _:
                 print("Invalid input")
+
+    def update(self):
+        self.encounter_type.print()
 
     def print_menu(self):
         print('------ENCOUNTER-------')

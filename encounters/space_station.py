@@ -22,3 +22,6 @@ class SpaceStation(Encounter):
                     stuff_for_action.ore = 0
             else:
                 print("Ship has no ore to sell")
+
+    def print(self):
+        print("=====STATION=====")

@@ -27,6 +27,10 @@ class ExploreState(GameState):
             case _:
                 print("Invalid input")
 
+    def update(self):
+        self.game.ship.update_grid()
+        self.game.space.print()
+
     def print_menu(self):
         print('------EXPLORATION-------')
         print('     SHIP CONTROLS')

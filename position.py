@@ -1,7 +1,7 @@
 from random import randint
 
-from asteroid import Asteroid
-from space_station import SpaceStation
+from encounters.asteroid import Asteroid
+from encounters.space_station import SpaceStation
 
 
 class Position:

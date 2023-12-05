@@ -19,6 +19,9 @@ class Game:
     def handle_input(self):
         self.stack[-1].handle_input()
 
+    def update(self):
+        self.stack[-1].update()
+
     def push_new_state(self, state):
         self.stack.append(state)
         print()
