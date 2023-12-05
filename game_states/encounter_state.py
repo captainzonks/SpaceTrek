@@ -1,5 +1,4 @@
 from asteroid import Asteroid
-from encounter import Encounter
 from game_state import GameState
 from space_station import SpaceStation
 
@@ -7,7 +6,7 @@ from space_station import SpaceStation
 class EncounterState(GameState):
     def __init__(self, game, encounter_type):
         super().__init__(game)
-        self.encounter_type: Encounter = encounter_type
+        self.encounter_type = encounter_type
         self.title = 'Encounter'
         self.menu = ()
         self.tools = []
@@ -18,8 +17,7 @@ class EncounterState(GameState):
 
         match player_input:
             case '1':
-                for entry in self.menu:
-                    print(entry)
+                self.encounter_action()
             case '2':
                 print("Disengaging")
                 self.game.pop_state_off_stack()
@@ -41,9 +39,17 @@ class EncounterState(GameState):
     def initialize_encounter(self):
         match self.encounter_type:
             case Asteroid():
-                self.menu = ('|| 1: Mine', '|| 2: Disengage')
+                self.menu = ('|| 1: Mine', '|| 2: Leave')
                 # mining laser strength
-                self.tools[0] = 150
+                self.tools.append(150)
             case SpaceStation():
-                self.menu = ('|| 1: Dock', '|| 2: Disengage')
+                self.menu = ('|| 1: Sell Ore', '|| 2: Leave')
         self.encounter_type.tools = self.tools
+
+    def encounter_action(self):
+        match self.encounter_type:
+            case Asteroid():
+                mined = self.encounter_type.action(self.game.ship)
+                self.game.ship.inventory.add_ore(mined)
+            case SpaceStation():
+                self.encounter_type.action(self.game.ship.inventory)

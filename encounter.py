@@ -1,5 +1,4 @@
-from random import randint
-
+# from ship import Ship
 
 class Encounter:
     def __init__(self):
@@ -7,5 +6,5 @@ class Encounter:
         self.description = 'Nothing'
         self.tools = []
 
-    def action(self):
+    def action(self, stuff_for_action):
         pass

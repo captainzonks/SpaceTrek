@@ -11,7 +11,7 @@ class ExploreState(GameState):
         player_input = input().lower()
 
         match player_input:
-            case 'w' | 's' | 'a' | 'd' | 'e' | 'p':
+            case 'w' | 's' | 'a' | 'd' | 'e' | 'p' | 'i':
                 self.game.ship.handle_ship_commands(player_input)
             case 'f':
                 if self.game.ship.position.encounter is not None:

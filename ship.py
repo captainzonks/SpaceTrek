@@ -1,4 +1,5 @@
 from engine import Engine
+from inventory import Inventory
 from position import Position
 from space import Space
 
@@ -8,6 +9,7 @@ class Ship:
         self.name = "Starship"
         self.space = space
         self.engine = Engine()
+        self.inventory = Inventory()
         self.position = Position(0, 0)
         self.previous_position = Position(0, 0)
         self.symbol = "o"
@@ -24,24 +26,26 @@ class Ship:
                 self.move_right()
             case 'e':
                 self.scan()
+            case 'i':
+                self.print_inventory()
             case 'p':
                 # probably just a debug print, no use for gameplay currently
                 self.print_position()
 
     def move_up(self):
-        if self.position.coordinates[0] is not 0:
+        if self.position.coordinates[0] != 0:
             self.update_position(self.position.coordinates[0] - 1, self.position.coordinates[1])
 
     def move_down(self):
-        if self.position.coordinates[0] is not 9:
+        if self.position.coordinates[0] != 9:
             self.update_position(self.position.coordinates[0] + 1, self.position.coordinates[1])
 
     def move_left(self):
-        if self.position.coordinates[1] is not 0:
+        if self.position.coordinates[1] != 0:
             self.update_position(self.position.coordinates[0], self.position.coordinates[1] - 1)
 
     def move_right(self):
-        if self.position.coordinates[1] is not 9:
+        if self.position.coordinates[1] != 9:
             self.update_position(self.position.coordinates[0], self.position.coordinates[1] + 1)
 
     def update_position(self, x_coord, y_coord):
@@ -51,7 +55,6 @@ class Ship:
 
     def update_grid(self):
         self.space.grid[self.previous_position.coordinates[0]][self.previous_position.coordinates[1]].symbol = '-'
-        print(self.position.coordinates[0], self.position.coordinates[1])
         self.space.grid[self.position.coordinates[0]][self.position.coordinates[1]].symbol = self.symbol
 
     def scan(self):
@@ -59,6 +62,12 @@ class Ship:
             print('SCAN:', self.position.encounter.description, 'found!')
         else:
             print('SCAN: Found nothing')
+
+    def print_inventory(self):
+        for item in self.inventory.stuff:
+            print(item)
+        print("ORE: ", self.inventory.ore)
+        print("MONEY: ", self.inventory.money)
 
     def print_position(self):
         print('POSITION: (', self.position.coordinates[0], ',', self.position.coordinates[1], ')')
